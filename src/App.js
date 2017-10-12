@@ -3,16 +3,36 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      books: []
+    };
+  }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+      <div className="">
+        <header className="">
+          <h1 className="">One Million Books...</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <section className="filters">
+          <button>1</button>
+          <button>2</button>
+          <button>3</button>
+          <button>4</button>
+          <button>5</button>
+        </section>
+        <main className="books--container-empty">
+          <h3>Click here to generate books</h3>
+          <button className="button--generate" />
+        </main>
+        <main className="books--container-full">
+          <ul className="books--list">
+            <li className="books--item">One item</li>
+            <li className="books--item">One item</li>
+            <li className="books--item">One item</li>
+          </ul>
+        </main>
       </div>
     );
   }
