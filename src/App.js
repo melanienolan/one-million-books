@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import faker from 'faker';
 import db from './mockDB';
 import logo from './logo.svg';
 import './App.css';
@@ -22,6 +23,41 @@ class App extends Component {
   }
   componentDidMount() {
     this.getGenres();
+    this.generateBooks();
+  }
+  generateBooks() {
+    let id = 0;
+    const capitalizeWords = str => {
+      return str.replace(/\w\S*/g, txt => {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    };
+    const genres = this.state.genres;
+    const numberOfBooks = 10000;
+    const books = [...Array(numberOfBooks)].map(x => {
+      id++;
+      const title = capitalizeWords(faker.lorem.words());
+      const authorFirstName = faker.name.firstName();
+      const authorLastName = faker.name.lastName();
+      const authorName = `${authorLastName}, ${authorFirstName}`;
+      const authorGender = Math.floor(Math.random() * 2) ? 'male' : 'female';
+      const genre = genres[Math.floor(Math.random() * genres.length)];
+      const published = faker.date.past(100).toISOString().substr(0, 10);
+      return Object.assign(
+        {},
+        {
+          id,
+          title,
+          authorName,
+          authorGender,
+          genre,
+          published
+        }
+      );
+    });
+    this.setState({
+      books
+    });
   }
 
   render() {
