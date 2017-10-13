@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import db from './mockDB';
 import logo from './logo.svg';
 import './App.css';
 
@@ -6,9 +7,23 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      books: []
+      books: [],
+      genres: [],
+      isLoading: true
     };
   }
+  getGenres() {
+    db.getGenres().then(genres => {
+      this.setState({
+        genres,
+        isLoading: false
+      });
+    });
+  }
+  componentDidMount() {
+    this.getGenres();
+  }
+
   render() {
     return (
       <div className="">
