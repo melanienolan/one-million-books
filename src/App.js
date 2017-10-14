@@ -66,6 +66,24 @@ class App extends Component {
       books
     });
   }
+  sortBookAZ() {
+    let books = this.state.books;
+    books = books.slice().sort((a, b) => {
+      return a.title < b.title ? -1 : 1;
+    });
+    this.setState({
+      books
+    });
+  }
+  sortBookZA() {
+    let books = this.state.books;
+    books = books.slice().sort((a, b) => {
+      return a.title > b.title ? -1 : 1;
+    });
+    this.setState({
+      books
+    });
+  }
 
   render() {
     if (this.state.isLoading) {
@@ -77,8 +95,8 @@ class App extends Component {
             <h1 className="">One Million Books...</h1>
           </header>
           <section className="filters">
-            <button>1</button>
-            <button>2</button>
+            <button onClick={() => this.sortBookAZ()}>1</button>
+            <button onClick={() => this.sortBookZA()}>2</button>
             <button>3</button>
             <button>4</button>
             <button>5</button>
