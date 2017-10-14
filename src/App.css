@@ -34,14 +34,14 @@ header h1 {
   height: 40px;
 }
 
-.books--container-empty {
-  display: none;
-  /*display: flex;
+.book--container-empty {
+  /*display: none;*/
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;*/
+  flex-direction: column;
 }
-.books--container-empty h3 {
+.book--container-empty h3 {
   color: #ffffff;
 }
 .button--generate {
@@ -50,17 +50,49 @@ header h1 {
   border-radius: 50%;
   background-color: center;
 }
-.books--container-full {
+.book--container-full {
   /*display: none;*/
   display: block;
+  /*max-height: 400px;*/
 }
-.books--list {
+.book--list {
+  width: 600px;
+  /*max-height: 400px;*/
+  margin: 5px auto;
+  overflow: scroll;
+}
+.react-scrollable-list {
   width: 600px;
   margin: 5px auto;
+  overflow: scroll;
 }
-.books--item {
-  height: 50px;
+.react-scrollable-list-item {
+  height: 100px;
   background-color: #ffffff;
   margin-bottom: 2px;
   list-style: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.book--item {
+  height: 100px;
+  background-color: #ffffff;
+  margin-bottom: 2px;
+  list-style: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.book--item-details {
+}
+.book--item-text {
+  font-size: 12px;
+  line-height: 15px;
+}
+.book--item-field {
+  display: inline-block;
+  width: 110px;
 }
