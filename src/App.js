@@ -66,14 +66,24 @@ class App extends Component {
       books
     });
   }
-  sortBooks(dir) {
+  sortBooks(type, dir) {
     let { books } = this.state;
     books = dir
       ? books.slice().sort((a, b) => {
-          return a.title < b.title ? -1 : 1;
+          if (type === 'title') {
+            return a.title < b.title ? -1 : 1;
+          }
+          if (type === 'author') {
+            return a.authorName < b.authorName ? -1 : 1;
+          }
         })
       : books.slice().sort((a, b) => {
-          return a.title > b.title ? -1 : 1;
+          if (type === 'title') {
+            return a.title > b.title ? -1 : 1;
+          }
+          if (type === 'author') {
+            return a.authorName > b.authorName ? -1 : 1;
+          }
         });
     this.setState({
       books
@@ -90,10 +100,10 @@ class App extends Component {
             <h1 className="">One Million Books...</h1>
           </header>
           <section className="filters">
-            <button onClick={() => this.sortBooks(1)}>1</button>
-            <button onClick={() => this.sortBooks(0)}>2</button>
-            <button>3</button>
-            <button>4</button>
+            <button onClick={() => this.sortBooks('title', 1)}>1</button>
+            <button onClick={() => this.sortBooks('title', 0)}>2</button>
+            <button onClick={() => this.sortBooks('author', 1)}>3</button>
+            <button onClick={() => this.sortBooks('author', 0)}>4</button>
             <button>5</button>
           </section>
           {this.state.books.length < numberOfBooks
