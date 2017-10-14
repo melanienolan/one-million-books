@@ -1,34 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Column, Table } from 'react-virtualized';
+import 'react-virtualized/styles.css';
 
 const BookList = props => {
-  const renderList = () => {
-    return props.books.map(book => {
-      return (
-        <li className="book--item" key={book.id}>
-          <p className="book--item-text">
-            <span className="book--item-field">Title:</span> {book.title}
-          </p>
-          <p className="book--item-text">
-            <span className="book--item-field">Author:</span> {book.authorName}
-          </p>
-          <p className="book--item-text">
-            <span className="book--item-field">Author Gender:</span> {book.authorGender}
-          </p>
-          <p className="book--item-text">
-            <span className="book--item-field">Genre:</span> {book.genre}
-          </p>
-          <p className="book--item-text">
-            <span className="book--item-field">Date published:</span> {book.published}
-          </p>
-        </li>
-      );
-    });
-  };
+  const { books } = props;
   return (
-    <ul className="book--list">
-      {renderList()}
-    </ul>
+    <Table
+      width={550}
+      height={300}
+      headerHeight={20}
+      rowHeight={30}
+      rowCount={books.length}
+      rowGetter={({ index }) => books[index]}>
+      <Column label="Id" dataKey="id" width={50} />
+      <Column label="Title" dataKey="title" width={100} />
+      <Column label="authorName" dataKey="authorName" width={100} />
+      <Column label="authorGender" dataKey="authorGender" width={100} />
+      <Column label="Genre" dataKey="genre" width={100} />
+      <Column label="Published" dataKey="published" width={100} />
+    </Table>
   );
 };
 
