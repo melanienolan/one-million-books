@@ -1,4 +1,4 @@
-const genres = [
+export const genres = [
   'Science fiction',
   'Satire',
   'Drama',
@@ -32,13 +32,13 @@ const genres = [
   'Fantasy'
 ];
 
-function getGenres() {
-  return new Promise(res => {
-    setTimeout(() => {
-      res(genres);
-    }, 1000);
-  });
-}
-export default {
-  getGenres
-};
+// function getGenres() {
+//   return new Promise(res => {
+//     setTimeout(() => {
+//       res(genres);
+//     }, 100);
+//   });
+// }
+// export default {
+//   getGenres
+// };
