@@ -6,8 +6,6 @@ import Filter from './Components/Filter';
 import logo from './logo.svg';
 import './App.css';
 
-const numberOfBooks = 100;
-
 class App extends Component {
   constructor() {
     super();
@@ -15,7 +13,8 @@ class App extends Component {
       books: [],
       genres: [],
       isLoading: true,
-      selectedGenre: ''
+      selectedGenre: '',
+      numberOfBooks: null
     };
   }
 
@@ -36,7 +35,7 @@ class App extends Component {
     this.getGenres();
     // this.generateBooks();
   }
-  generateBooks() {
+  generateBooks(numberOfBooks) {
     const capitalizeWords = str => {
       return str.replace(/\w\S*/g, txt => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -69,7 +68,8 @@ class App extends Component {
       });
     });
     this.setState({
-      books
+      books,
+      numberOfBooks
     });
   }
   sortBooks(type = '', dir) {
@@ -132,13 +132,26 @@ class App extends Component {
           <header className="">
             <h1 className="">One Million Books...</h1>
           </header>
-          {this.state.books.length < numberOfBooks
+          {!this.state.books.length
             ? <main className="book--container-empty">
                 <h3>Click here to generate books</h3>
-                <button
-                  className="button--generate"
-                  onClick={() => this.generateBooks()}
-                />
+                <div className="button--holder">
+                  <button
+                    className="button--generate-small"
+                    onClick={() => this.generateBooks(10)}>
+                    10
+                  </button>
+                  <button
+                    className="button--generate-large"
+                    onClick={() => this.generateBooks(1000000)}>
+                    1000000
+                  </button>
+                  <button
+                    className="button--generate-small"
+                    onClick={() => this.generateBooks(1000)}>
+                    1000
+                  </button>
+                </div>
               </main>
             : <main className="book--container-full">
                 <section className="filters">
