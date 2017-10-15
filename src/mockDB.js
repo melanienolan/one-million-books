@@ -1,4 +1,5 @@
 export const genres = [
+  'All',
   'Science fiction',
   'Satire',
   'Drama',
