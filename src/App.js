@@ -122,18 +122,7 @@ class App extends Component {
           <header className="">
             <h1 className="">One Million Books...</h1>
           </header>
-          <section className="filters">
-            <button onClick={() => this.sortBooks('title', 1)}>1</button>
-            <button onClick={() => this.sortBooks('title', 0)}>2</button>
-            <button onClick={() => this.sortBooks('author', 1)}>3</button>
-            <button onClick={() => this.sortBooks('author', 0)}>4</button>
-            <button>5</button>
-            <Filter
-              genres={this.state.genres}
-              selectedGenre={this.state.selectedGenre}
-              filterByGenre={e => this.filterByGenre(e)}
-            />
-          </section>
+
           {this.state.books.length < numberOfBooks
             ? <main className="book--container-empty">
                 <h3>Click here to generate books</h3>
@@ -143,6 +132,18 @@ class App extends Component {
                 />
               </main>
             : <main className="book--container-full">
+                <section className="filters">
+                  <button onClick={() => this.sortBooks('title', 1)}>1</button>
+                  <button onClick={() => this.sortBooks('title', 0)}>2</button>
+                  <button onClick={() => this.sortBooks('author', 1)}>3</button>
+                  <button onClick={() => this.sortBooks('author', 0)}>4</button>
+                  <button>5</button>
+                  <Filter
+                    genres={this.state.genres}
+                    selectedGenre={this.state.selectedGenre}
+                    filterByGenre={e => this.filterByGenre(e)}
+                  />
+                </section>
                 <BookList books={this.state.books} />
               </main>}
         </div>
