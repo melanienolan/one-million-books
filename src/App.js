@@ -82,6 +82,9 @@ class App extends Component {
           if (type === 'author') {
             return a.authorName < b.authorName ? -1 : 1;
           }
+          if (type === 'date') {
+            return a.published < b.published ? -1 : 1;
+          }
         })
       : books.slice().sort((a, b) => {
           if (type === 'title') {
@@ -89,6 +92,9 @@ class App extends Component {
           }
           if (type === 'author') {
             return a.authorName > b.authorName ? -1 : 1;
+          }
+          if (type === 'date') {
+            return a.published > b.published ? -1 : 1;
           }
         });
     this.setState({
@@ -122,7 +128,6 @@ class App extends Component {
           <header className="">
             <h1 className="">One Million Books...</h1>
           </header>
-
           {this.state.books.length < numberOfBooks
             ? <main className="book--container-empty">
                 <h3>Click here to generate books</h3>
@@ -137,7 +142,8 @@ class App extends Component {
                   <button onClick={() => this.sortBooks('title', 0)}>2</button>
                   <button onClick={() => this.sortBooks('author', 1)}>3</button>
                   <button onClick={() => this.sortBooks('author', 0)}>4</button>
-                  <button>5</button>
+                  <button onClick={() => this.sortBooks('date', 1)}>5</button>
+                  <button onClick={() => this.sortBooks('date', 0)}>6</button>
                   <Filter
                     genres={this.state.genres}
                     selectedGenre={this.state.selectedGenre}
