@@ -72,7 +72,7 @@ class App extends Component {
       books
     });
   }
-  sortBooks(type, dir) {
+  sortBooks(type = '', dir) {
     let { books } = this.state;
     books = dir
       ? books.slice().sort((a, b) => {
@@ -84,6 +84,8 @@ class App extends Component {
           }
           if (type === 'date') {
             return a.published < b.published ? -1 : 1;
+          } else {
+            return a.id < b.id ? -1 : 1;
           }
         })
       : books.slice().sort((a, b) => {
@@ -95,6 +97,8 @@ class App extends Component {
           }
           if (type === 'date') {
             return a.published > b.published ? -1 : 1;
+          } else {
+            return a.id > b.id ? -1 : 1;
           }
         });
     this.setState({
@@ -144,6 +148,8 @@ class App extends Component {
                   <button onClick={() => this.sortBooks('author', 0)}>4</button>
                   <button onClick={() => this.sortBooks('date', 1)}>5</button>
                   <button onClick={() => this.sortBooks('date', 0)}>6</button>
+                  <button onClick={() => this.sortBooks('', 1)}>7</button>
+                  <button onClick={() => this.sortBooks('', 0)}>8</button>
                   <Filter
                     genres={this.state.genres}
                     selectedGenre={this.state.selectedGenre}
