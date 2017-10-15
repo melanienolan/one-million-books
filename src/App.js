@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import faker from 'faker';
 import { genres } from './mockDB';
 import BookList from './Components/BookList';
+import Filter from './Components/Filter';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       books: [],
       genres: [],
-      isLoading: true
+      isLoading: true,
+      selectedGenre: ''
     };
   }
 
@@ -24,6 +26,7 @@ class App extends Component {
     //     isLoading: false
     //   });
     // });
+
     this.setState({
       genres,
       isLoading: false
@@ -39,7 +42,13 @@ class App extends Component {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     };
-    const genres = this.state.genres;
+    let { genres } = this.state;
+    // remove All from list of genres
+    genres = genres.slice(1);
+
+    const book = {
+      visible: 1
+    };
 
     const books = [...Array(numberOfBooks)].map((x, i) => {
       const id = i;
@@ -50,17 +59,14 @@ class App extends Component {
       const authorGender = Math.floor(Math.random() * 2) ? 'male' : 'female';
       const genre = genres[Math.floor(Math.random() * genres.length)];
       const published = faker.date.past(100).toISOString().substr(0, 10);
-      return Object.assign(
-        {},
-        {
-          id,
-          title,
-          authorName,
-          authorGender,
-          genre,
-          published
-        }
-      );
+      return Object.assign({}, book, {
+        id,
+        title,
+        authorName,
+        authorGender,
+        genre,
+        published
+      });
     });
     this.setState({
       books
@@ -89,6 +95,23 @@ class App extends Component {
       books
     });
   }
+  filterByGenre(e) {
+    e.preventDefault();
+    const selectedGenre = e.target.value;
+    let { books } = this.state;
+    books = books.map(book => {
+      if (selectedGenre === 'All' || book.genre === selectedGenre) {
+        book.visible = 1;
+      } else {
+        book.visible = 0;
+      }
+      return book;
+    });
+    this.setState({
+      selectedGenre,
+      books
+    });
+  }
 
   render() {
     if (this.state.isLoading) {
@@ -105,6 +128,11 @@ class App extends Component {
             <button onClick={() => this.sortBooks('author', 1)}>3</button>
             <button onClick={() => this.sortBooks('author', 0)}>4</button>
             <button>5</button>
+            <Filter
+              genres={this.state.genres}
+              selectedGenre={this.state.selectedGenre}
+              filterByGenre={e => this.filterByGenre(e)}
+            />
           </section>
           {this.state.books.length < numberOfBooks
             ? <main className="book--container-empty">
