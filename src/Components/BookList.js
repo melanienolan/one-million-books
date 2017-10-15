@@ -4,7 +4,8 @@ import { Column, Table } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 const BookList = props => {
-  const { books } = props;
+  let { books } = props;
+  books = books.filter(book => book.visible);
   return (
     <Table
       width={550}
