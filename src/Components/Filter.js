@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Filter = props => {
-  const { filterType, filterCategories } = props;
+  const { filterType, filterCategories, activeFilter } = props;
   const renderList = () => {
     return filterCategories.map((category, i) => {
       return (
@@ -20,7 +20,7 @@ const Filter = props => {
           <select
             className="form--input"
             onChange={e => props.filterBooks(e, filterType)}
-            value={props.selectedFilter}
+            value={props.activeFilter}
             name="filter"
             id="">
             {renderList()}
