@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Column, Table } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
-const BookList = props => {
-  let { books } = props;
+const BookList = ({ books }) => {
   books = books.filter(book => book.visible);
   return (
     <Table

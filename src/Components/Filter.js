@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Filter = props => {
-  const { filterType, filterCategories, activeFilter } = props;
+const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) => {
   const renderList = () => {
     return filterCategories.map((category, i) => {
       return (
@@ -19,8 +18,8 @@ const Filter = props => {
           <span className="form--text">{`Filter by ${filterType}`}</span>
           <select
             className="form--input"
-            onChange={e => props.updateFilters(e, filterType)}
-            value={props.activeFilter}
+            onChange={e => updateFilters(e, filterType)}
+            value={activeFilter}
             name="filter"
             id="">
             {renderList()}
