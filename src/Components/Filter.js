@@ -19,7 +19,7 @@ const Filter = props => {
           <span className="form--text">{`Filter by ${filterType}`}</span>
           <select
             className="form--input"
-            onChange={e => props.filterBooks(e, filterType)}
+            onChange={e => props.updateFilters(e, filterType)}
             value={props.activeFilter}
             name="filter"
             id="">
@@ -32,9 +32,10 @@ const Filter = props => {
 };
 
 Filter.propTypes = {
-  genres: PropTypes.array,
-  selectedGenre: PropTypes.string,
-  filterByGenre: PropTypes.func
+  filterCategories: PropTypes.array,
+  filterType: PropTypes.string,
+  activeFilter: PropTypes.string,
+  updateFilters: PropTypes.func
 };
 
 export default Filter;
