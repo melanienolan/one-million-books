@@ -4,10 +4,13 @@ import ArrowUp from 'react-icons/lib/fa/arrow-up';
 import ArrowDown from 'react-icons/lib/fa/arrow-down';
 
 const Sort = ({ type, sortBooks }) => {
+  const capitalizeFirstLetter = str => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
   return (
     <div className="sort">
       <span>
-        {type}
+        {capitalizeFirstLetter(type)}
       </span>
       <button className="button--sort" onClick={() => sortBooks(type, 1)}>
         <ArrowDown />
