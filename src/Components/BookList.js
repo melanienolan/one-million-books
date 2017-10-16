@@ -8,16 +8,16 @@ const BookList = props => {
   books = books.filter(book => book.visible);
   return (
     <Table
-      width={550}
-      height={300}
-      headerHeight={20}
+      width={600}
+      height={360}
+      headerHeight={40}
       rowHeight={30}
       rowCount={books.length}
       rowGetter={({ index }) => books[index]}>
       <Column label="Id" dataKey="id" width={50} />
-      <Column label="Title" dataKey="title" width={100} />
-      <Column label="authorName" dataKey="authorName" width={100} />
-      <Column label="authorGender" dataKey="authorGender" width={100} />
+      <Column label="Title" dataKey="title" width={150} />
+      <Column label="Author Name" dataKey="authorName" width={100} />
+      <Column label="Author Gender" dataKey="authorGender" width={100} />
       <Column label="Genre" dataKey="genre" width={100} />
       <Column label="Published" dataKey="published" width={100} />
     </Table>
