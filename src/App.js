@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import faker from 'faker';
-import { genres } from './mockDB';
+import { genres, genders } from './mockDB';
 import BookList from './Components/BookList';
 import Filter from './Components/Filter';
 import ArrowUp from 'react-icons/lib/fa/arrow-up';
@@ -14,8 +14,10 @@ class App extends Component {
     this.state = {
       books: [],
       genres: [],
+      genders: [],
       isLoading: true,
       selectedGenre: '',
+      selectedGender: 'All',
       numberOfBooks: null
     };
   }
@@ -30,6 +32,7 @@ class App extends Component {
 
     this.setState({
       genres,
+      genders,
       isLoading: false
     });
   }
@@ -43,9 +46,10 @@ class App extends Component {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     };
-    let { genres } = this.state;
-    // remove All from list of genres
+    let { genres, genders } = this.state;
+    // remove All from list of genres and genders
     genres = genres.slice(1);
+    genders = genders.slice(1);
 
     const book = {
       visible: 1
@@ -57,7 +61,7 @@ class App extends Component {
       const authorFirstName = faker.name.firstName();
       const authorLastName = faker.name.lastName();
       const authorName = `${authorLastName}, ${authorFirstName}`;
-      const authorGender = Math.floor(Math.random() * 2) ? 'male' : 'female';
+      const authorGender = genders[Math.floor(Math.random() * genders.length)];
       const genre = genres[Math.floor(Math.random() * genres.length)];
       const published = faker.date.past(100).toISOString().substr(0, 10);
       return Object.assign({}, book, {
@@ -209,6 +213,8 @@ class App extends Component {
                       <ArrowUp />
                     </button>
                   </div>
+                </section>
+                <section>
                   <Filter
                     genres={this.state.genres}
                     selectedGenre={this.state.selectedGenre}
