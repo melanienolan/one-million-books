@@ -3,6 +3,8 @@ import faker from 'faker';
 import { genres } from './mockDB';
 import BookList from './Components/BookList';
 import Filter from './Components/Filter';
+import ArrowUp from 'react-icons/lib/fa/arrow-up';
+import ArrowDown from 'react-icons/lib/fa/arrow-down';
 import logo from './logo.svg';
 import './App.css';
 
@@ -155,14 +157,58 @@ class App extends Component {
               </main>
             : <main className="book--container-full">
                 <section className="filters">
-                  <button onClick={() => this.sortBooks('title', 1)}>1</button>
-                  <button onClick={() => this.sortBooks('title', 0)}>2</button>
-                  <button onClick={() => this.sortBooks('author', 1)}>3</button>
-                  <button onClick={() => this.sortBooks('author', 0)}>4</button>
-                  <button onClick={() => this.sortBooks('date', 1)}>5</button>
-                  <button onClick={() => this.sortBooks('date', 0)}>6</button>
-                  <button onClick={() => this.sortBooks('', 1)}>7</button>
-                  <button onClick={() => this.sortBooks('', 0)}>8</button>
+                  <div className="sort">
+                    Book title:
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('title', 1)}>
+                      <ArrowDown />
+                    </button>
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('title', 0)}>
+                      <ArrowUp />
+                    </button>
+                  </div>
+                  <div className="sort">
+                    Author:
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('author', 1)}>
+                      <ArrowDown />
+                    </button>
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('author', 0)}>
+                      <ArrowUp />
+                    </button>
+                  </div>
+                  <div className="sort">
+                    Date published:
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('date', 1)}>
+                      <ArrowDown />
+                    </button>
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('date', 0)}>
+                      <ArrowUp />
+                    </button>
+                  </div>
+                  <div className="sort">
+                    Id:
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('', 1)}>
+                      <ArrowDown />
+                    </button>
+                    <button
+                      className="button--sort"
+                      onClick={() => this.sortBooks('', 0)}>
+                      <ArrowUp />
+                    </button>
+                  </div>
                   <Filter
                     genres={this.state.genres}
                     selectedGenre={this.state.selectedGenre}
