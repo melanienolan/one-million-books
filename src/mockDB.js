@@ -32,6 +32,7 @@ export const genres = [
   'Autobiographies',
   'Fantasy'
 ];
+export const genders = ['All', 'Male', 'Female'];
 
 // function getGenres() {
 //   return new Promise(res => {
