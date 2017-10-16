@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import faker from 'faker';
 import { genres, genders } from './mockDB';
+import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
 import Filter from './Components/Filter';
-// import ArrowUp from 'react-icons/lib/fa/arrow-up';
-// import ArrowDown from 'react-icons/lib/fa/arrow-down';
 import logo from './logo.svg';
 import './App.css';
 
@@ -159,21 +158,18 @@ class App extends Component {
             ? <main className="book--container-empty">
                 <h3>Click here to generate books</h3>
                 <div className="button--holder">
-                  <button
-                    className="button--generate-small"
-                    onClick={() => this.generateBooks(10)}>
-                    10
-                  </button>
-                  <button
-                    className="button--generate-large"
-                    onClick={() => this.generateBooks(1000000)}>
-                    1000000
-                  </button>
-                  <button
-                    className="button--generate-small"
-                    onClick={() => this.generateBooks(1000)}>
-                    1000
-                  </button>
+                  <GenerateButton
+                    number={10}
+                    generateBooks={number => this.generateBooks(number)}
+                  />
+                  <GenerateButton
+                    number={1000000}
+                    generateBooks={number => this.generateBooks(number)}
+                  />
+                  <GenerateButton
+                    number={1000}
+                    generateBooks={number => this.generateBooks(number)}
+                  />
                 </div>
               </main>
             : <main className="book--container-full">
