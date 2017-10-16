@@ -16,7 +16,7 @@ class App extends Component {
       genres: [],
       genders: [],
       isLoading: true,
-      selectedGenre: '',
+      selectedGenre: 'All',
       selectedGender: 'All',
       numberOfBooks: null
     };
@@ -111,22 +111,48 @@ class App extends Component {
       books
     });
   }
-  filterByGenre(e) {
+  filterBooks(e, filterType) {
     e.preventDefault();
-    const selectedGenre = e.target.value;
-    let { books } = this.state;
-    books = books.map(book => {
-      if (selectedGenre === 'All' || book.genre === selectedGenre) {
-        book.visible = 1;
-      } else {
-        book.visible = 0;
-      }
-      return book;
-    });
-    this.setState({
-      selectedGenre,
-      books
-    });
+    if (filterType === 'genres') {
+      const selectedGenre = e.target.value;
+      let { books, selectedGender } = this.state;
+      books = books.map(book => {
+        if (selectedGenre === 'All' || book.genre === selectedGenre) {
+          if (book.authorGender === selectedGender || selectedGender === 'All') {
+            book.visible = 1;
+          } else {
+            book.visible = 0;
+          }
+        } else {
+          book.visible = 0;
+        }
+        return book;
+      });
+      this.setState({
+        selectedGenre,
+        books
+      });
+    }
+    if (filterType === 'genders') {
+      const selectedGender = e.target.value;
+      let { books, selectedGenre } = this.state;
+      books = books.map(book => {
+        if (selectedGender === 'All' || book.authorGender === selectedGender) {
+          if (book.genre === selectedGenre || selectedGenre === 'All') {
+            book.visible = 1;
+          } else {
+            book.visible = 0;
+          }
+        } else {
+          book.visible = 0;
+        }
+        return book;
+      });
+      this.setState({
+        selectedGender,
+        books
+      });
+    }
   }
 
   render() {
@@ -216,9 +242,16 @@ class App extends Component {
                 </section>
                 <section>
                   <Filter
-                    genres={this.state.genres}
-                    selectedGenre={this.state.selectedGenre}
-                    filterByGenre={e => this.filterByGenre(e)}
+                    filterCategories={this.state.genres}
+                    filterType="genres"
+                    selectedFilter={this.state.selectedGenre}
+                    filterBooks={(e, filterType) => this.filterBooks(e, filterType)}
+                  />
+                  <Filter
+                    filterCategories={this.state.genders}
+                    filterType="genders"
+                    selectedFilter={this.state.selectedGender}
+                    filterBooks={(e, filterType) => this.filterBooks(e, filterType)}
                   />
                 </section>
                 <BookList books={this.state.books} />
