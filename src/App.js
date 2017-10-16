@@ -92,9 +92,11 @@ class App extends Component {
           }
           if (type === 'date') {
             return a.published < b.published ? -1 : 1;
-          } else {
+          }
+          if (type === 'id') {
             return a.id < b.id ? -1 : 1;
           }
+          return;
         })
       : books.slice().sort((a, b) => {
           if (type === 'title') {
@@ -105,9 +107,11 @@ class App extends Component {
           }
           if (type === 'date') {
             return a.published > b.published ? -1 : 1;
-          } else {
+          }
+          if (type === 'id') {
             return a.id > b.id ? -1 : 1;
           }
+          return;
         });
     this.setState({
       books
