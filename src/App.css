@@ -27,11 +27,11 @@ header h1 {
   display: flex;
   justify-content: space-around;
 }
-.filters button {
+.button--sort {
   background-color: #ffffff;
-  border-radius: 5px;
-  width: 40px;
-  height: 40px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
 }
 
 .book--container-empty {
@@ -74,21 +74,6 @@ header h1 {
   margin: 5px auto;
   overflow: scroll;
 }
-.react-scrollable-list {
-  width: 600px;
-  margin: 5px auto;
-  overflow: scroll;
-}
-.react-scrollable-list-item {
-  height: 100px;
-  background-color: #ffffff;
-  margin-bottom: 2px;
-  list-style: none;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 .book--item {
   height: 100px;
   background-color: #ffffff;
@@ -108,4 +93,36 @@ header h1 {
 .book--item-field {
   display: inline-block;
   width: 110px;
+}
+.form {
+}
+.form--label {
+  color: #f6f5f7;
+  display: block;
+}
+.form--text {
+  display: inline-block;
+  width: 100px;
+}
+.form--input {
+  height: 20px;
+  width: 150px;
+  border-radius: 4px;
+  border: none;
+  margin: 2px 5px;
+  padding: 0 5px;
+}
+.ReactVirtualized__Table {
+  width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+.ReactVirtualized__Table__headerRow {
+  text-transform: none;
+  border-bottom: 1px solid grey;
+}
+.ReactVirtualized__Table__headerColumn {
+}
+.ReactVirtualized__Table__row {
+  font-size: 0.8rem;
 }
