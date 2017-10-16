@@ -16,9 +16,11 @@ class App extends Component {
       genres: [],
       genders: [],
       isLoading: true,
-      selectedGenre: 'All',
-      selectedGender: 'All',
-      numberOfBooks: null
+      numberOfBooks: null,
+      filters: {
+        genre: 'All',
+        gender: 'All'
+      }
     };
   }
 
@@ -113,46 +115,60 @@ class App extends Component {
   }
   filterBooks(e, filterType) {
     e.preventDefault();
-    if (filterType === 'genres') {
-      const selectedGenre = e.target.value;
-      let { books, selectedGender } = this.state;
-      books = books.map(book => {
-        if (selectedGenre === 'All' || book.genre === selectedGenre) {
-          if (book.authorGender === selectedGender || selectedGender === 'All') {
-            book.visible = 1;
-          } else {
-            book.visible = 0;
-          }
-        } else {
-          book.visible = 0;
-        }
-        return book;
-      });
-      this.setState({
-        selectedGenre,
-        books
-      });
-    }
-    if (filterType === 'genders') {
-      const selectedGender = e.target.value;
-      let { books, selectedGenre } = this.state;
-      books = books.map(book => {
-        if (selectedGender === 'All' || book.authorGender === selectedGender) {
-          if (book.genre === selectedGenre || selectedGenre === 'All') {
-            book.visible = 1;
-          } else {
-            book.visible = 0;
-          }
-        } else {
-          book.visible = 0;
-        }
-        return book;
-      });
-      this.setState({
-        selectedGender,
-        books
-      });
-    }
+    const selectedFilter = e.target.value;
+    let { filters } = this.state;
+    filters[filterType] = selectedFilter;
+    this.setState({
+      filters
+    });
+    // if (filterType === 'genres') {
+    //   const selectedFilter = e.target.value;
+    //   let { books, filters } = this.state;
+    //   books = books.map(book => {
+    //     if (selectedFilter === 'All' || book.genre === selectedFilter) {
+    //       if (book.authorGender === filters.gender || filters.gender === 'All') {
+    //         book.visible = 1;
+    //       } else {
+    //         book.visible = 0;
+    //       }
+    //     } else {
+    //       book.visible = 0;
+    //     }
+    //     return book;
+    //   });
+    //   filters.genre = selectedFilter;
+    //   this.setState(
+    //     {
+    //       filters,
+    //       books
+    //     },
+    //     () => console.log(this.state.filters)
+    //   );
+    // }
+    // if (filterType === 'genders') {
+    //   const selectedFilter = e.target.value;
+    //   let { books, filters } = this.state;
+    //   books = books.map(book => {
+    //     if (selectedFilter === 'All' || book.authorGender === selectedFilter) {
+    //       if (book.genre === filters.genre || filters.genre === 'All') {
+    //         book.visible = 1;
+    //       } else {
+    //         book.visible = 0;
+    //       }
+    //     } else {
+    //       book.visible = 0;
+    //     }
+    //     return book;
+    //   });
+    //   filters.gender = selectedFilter;
+    //   this.setState(
+    //     {
+    //       filters,
+    //       books
+    //     },
+    //     () => console.log(this.state.filters)
+    //   );
+    // }
   }
 
   render() {
@@ -243,14 +259,14 @@ class App extends Component {
                 <section>
                   <Filter
                     filterCategories={this.state.genres}
-                    filterType="genres"
-                    selectedFilter={this.state.selectedGenre}
+                    filterType="genre"
+                    activeFilter={this.state.filters.genre}
                     filterBooks={(e, filterType) => this.filterBooks(e, filterType)}
                   />
                   <Filter
                     filterCategories={this.state.genders}
-                    filterType="genders"
-                    selectedFilter={this.state.selectedGender}
+                    filterType="gender"
+                    activeFilter={this.state.filters.gender}
                     filterBooks={(e, filterType) => this.filterBooks(e, filterType)}
                   />
                 </section>
