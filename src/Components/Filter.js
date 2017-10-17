@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) => {
+  const capitalizeFirstLetter = str => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
   const renderList = () => {
     return filterCategories.map((category, i) => {
       return (
@@ -15,7 +18,9 @@ const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) =
     <div>
       <form className="form" action="">
         <label className="form--label">
-          <span className="form--text">{`Filter by ${filterType}`}</span>
+          <span className="form--text">
+            {capitalizeFirstLetter(filterType)}
+          </span>
           <select
             className="form--input"
             onChange={e => updateFilters(e, filterType)}
@@ -31,8 +36,8 @@ const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) =
 };
 
 Filter.propTypes = {
-  filterCategories: PropTypes.array,
   filterType: PropTypes.string,
+  filterCategories: PropTypes.array,
   activeFilter: PropTypes.string,
   updateFilters: PropTypes.func
 };
