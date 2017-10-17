@@ -26,7 +26,7 @@ class App extends Component {
     };
   }
 
-  getGenres() {
+  getDetails() {
     // db.getGenres().then(genres => {
     //   this.setState({
     //     genres,
@@ -42,8 +42,7 @@ class App extends Component {
     });
   }
   componentDidMount() {
-    this.getGenres();
-    // this.generateBooks();
+    this.getDetails();
   }
   generateBooks(numberOfBooks) {
     const capitalizeWords = str => {
