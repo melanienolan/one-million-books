@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import faker from 'faker';
-import { genres, genders } from './mockDB';
+import { genres, genders, specialDates, lastFridays } from './mockDB';
 import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
@@ -15,11 +15,13 @@ class App extends Component {
       books: [],
       genres: [],
       genders: [],
+      specialDates: [],
       isLoading: true,
       numberOfBooks: null,
       filters: {
         genre: 'All',
-        gender: 'All'
+        gender: 'All',
+        specialDates: 'All'
       }
     };
   }
@@ -35,6 +37,7 @@ class App extends Component {
     this.setState({
       genres,
       genders,
+      specialDates,
       isLoading: false
     });
   }
@@ -47,6 +50,19 @@ class App extends Component {
       return str.replace(/\w\S*/g, txt => {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
+    };
+    const isDateSpecial = date => {
+      if (date.slice(5) === '10-31' && lastFridays.indexOf(date) > -1) {
+        return 'Halloween and Last Friday';
+      }
+      if (date.slice(5) === '10-31') {
+        return 'Halloween';
+      }
+      if (lastFridays.indexOf(date) > -1) {
+        return 'Last Friday of Month';
+      } else {
+        return null;
+      }
     };
     let { genres, genders } = this.state;
     // remove All from list of genres and genders
@@ -66,13 +82,16 @@ class App extends Component {
       const authorGender = genders[Math.floor(Math.random() * genders.length)];
       const genre = genres[Math.floor(Math.random() * genres.length)];
       const published = faker.date.past(100).toISOString().substr(0, 10);
+      const special = isDateSpecial(published);
+
       return Object.assign({}, book, {
         id,
         title,
         authorName,
         authorGender,
         genre,
-        published
+        published,
+        special
       });
     });
     this.setState({
@@ -133,8 +152,10 @@ class App extends Component {
   }
   filterBooks() {
     let { books, filters } = this.state;
+
     books = books.map(book => {
       if (
+        (filters.specialDates === 'All' || book.special === filters.specialDates) &&
         (filters.genre === 'All' || book.genre === filters.genre) &&
         (filters.gender === 'All' || book.authorGender === filters.gender)
       ) {
@@ -160,7 +181,9 @@ class App extends Component {
           </header>
           {!this.state.books.length
             ? <main className="book--container-empty">
-                <h3>Click here to generate books</h3>
+                <h3>
+                  Click here to <br />generate books
+                </h3>
                 <div className="button--holder">
                   <GenerateButton
                     number={10}
@@ -177,34 +200,54 @@ class App extends Component {
                 </div>
               </main>
             : <main className="book--container-full">
-                <section className="filters">
-                  <Sort
-                    type="title"
-                    sortBooks={(type, dir) => this.sortBooks(type, dir)}
-                  />
-                  <Sort
-                    type="author"
-                    sortBooks={(type, dir) => this.sortBooks(type, dir)}
-                  />
-                  <Sort
-                    type="date"
-                    sortBooks={(type, dir) => this.sortBooks(type, dir)}
-                  />
-                  <Sort type="id" sortBooks={(type, dir) => this.sortBooks(type, dir)} />
-                </section>
-                <section>
-                  <Filter
-                    filterCategories={this.state.genres}
-                    filterType="genre"
-                    activeFilter={this.state.filters.genre}
-                    updateFilters={(e, filterType) => this.updateFilters(e, filterType)}
-                  />
-                  <Filter
-                    filterCategories={this.state.genders}
-                    filterType="gender"
-                    activeFilter={this.state.filters.gender}
-                    updateFilters={(e, filterType) => this.updateFilters(e, filterType)}
-                  />
+                <section className="section">
+                  <div className="section--inner">
+                    <h3 className="section--title">Sort by:</h3>
+                    <div className="section--container-sort">
+                      <Sort
+                        type="title"
+                        sortBooks={(type, dir) => this.sortBooks(type, dir)}
+                      />
+                      <Sort
+                        type="author"
+                        sortBooks={(type, dir) => this.sortBooks(type, dir)}
+                      />
+                      <Sort
+                        type="date"
+                        sortBooks={(type, dir) => this.sortBooks(type, dir)}
+                      />
+                      <Sort
+                        type="id"
+                        sortBooks={(type, dir) => this.sortBooks(type, dir)}
+                      />
+                    </div>
+                  </div>
+                  <div className="section--inner">
+                    <h3 className="section--title">Filter by:</h3>
+                    <div className="section--container-filter">
+                      <Filter
+                        filterCategories={this.state.genres}
+                        filterType="genre"
+                        activeFilter={this.state.filters.genre}
+                        updateFilters={(e, filterType) =>
+                          this.updateFilters(e, filterType)}
+                      />
+                      <Filter
+                        filterCategories={this.state.genders}
+                        filterType="gender"
+                        activeFilter={this.state.filters.gender}
+                        updateFilters={(e, filterType) =>
+                          this.updateFilters(e, filterType)}
+                      />
+                      <Filter
+                        filterCategories={this.state.specialDates}
+                        filterType="specialDates"
+                        activeFilter={this.state.filters.specialDates}
+                        updateFilters={(e, filterType) =>
+                          this.updateFilters(e, filterType)}
+                      />
+                    </div>
+                  </div>
                 </section>
                 <BookList books={this.state.books} />
               </main>}
