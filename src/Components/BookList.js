@@ -5,20 +5,28 @@ import 'react-virtualized/styles.css';
 
 const BookList = ({ books }) => {
   books = books.filter(book => book.visible);
+  const errorMessage = `No books exist with those filters`;
+  if (!books.length) {
+    return (
+      <div className="table--empty">
+        {errorMessage}
+      </div>
+    );
+  }
   return (
     <Table
-      width={600}
+      width={660}
       height={360}
       headerHeight={40}
       rowHeight={30}
       rowCount={books.length}
       rowGetter={({ index }) => books[index]}>
       <Column label="Id" dataKey="id" width={50} />
-      <Column label="Title" dataKey="title" width={150} />
-      <Column label="Author Name" dataKey="authorName" width={100} />
+      <Column label="Title" dataKey="title" width={210} />
+      <Column label="Author Name" dataKey="authorName" width={110} />
       <Column label="Author Gender" dataKey="authorGender" width={100} />
-      <Column label="Genre" dataKey="genre" width={100} />
-      <Column label="Published" dataKey="published" width={100} />
+      <Column label="Genre" dataKey="genre" width={110} />
+      <Column label="Published" dataKey="published" width={80} />
     </Table>
   );
 };
