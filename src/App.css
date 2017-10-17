@@ -14,7 +14,8 @@ button {
   cursor: pointer;
 }
 header {
-  height: 120px;
+  height: 80px;
+  background-color: #b16caf;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,18 +23,18 @@ header {
 header h1 {
   color: #ffffff;
 }
-.filters {
-  height: 80px;
-  display: flex;
-  justify-content: space-around;
-}
 .button--sort {
   background-color: #ffffff;
+  color: #b16caf;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 23px;
+  margin: 2px;
 }
-
+[class^="book--container"] {
+  width: 760px;
+  margin: 0 auto;
+}
 .book--container-empty {
   /*display: none;*/
   display: flex;
@@ -43,6 +44,10 @@ header h1 {
 }
 .book--container-empty h3 {
   color: #ffffff;
+  text-align: center;
+  margin: 35px 0 15px 0;
+  font-size: 1.5rem;
+  line-height: 1.5;
 }
 .button--holder {
   display: flex;
@@ -53,7 +58,9 @@ header h1 {
 }
 [class^="button--generate"] {
   border-radius: 50%;
-  background-color: grey;
+  background-color: #ffffff;
+  color: #b16caf;
+  font-weight: bold;
 }
 .button--generate-large {
   width: 100px;
@@ -64,13 +71,9 @@ header h1 {
   height: 50px;
 }
 .book--container-full {
-  /*display: none;*/
-  display: block;
-  /*max-height: 400px;*/
 }
 .book--list {
   width: 600px;
-  /*max-height: 400px;*/
   margin: 5px auto;
   overflow: scroll;
 }
@@ -103,26 +106,62 @@ header h1 {
 .form--text {
   display: inline-block;
   width: 100px;
+  text-align: center;
 }
 .form--input {
   height: 20px;
-  width: 150px;
+  width: 100px;
   border-radius: 4px;
   border: none;
-  margin: 2px 5px;
+  margin: 10px 5px;
   padding: 0 5px;
 }
 .ReactVirtualized__Table {
-  width: 600px;
+  width: 660px;
   margin: 0 auto;
   background-color: #ffffff;
 }
 .ReactVirtualized__Table__headerRow {
   text-transform: none;
   border-bottom: 1px solid grey;
+  background-color: #b16caf;
+  color: #ffffff;
 }
 .ReactVirtualized__Table__headerColumn {
 }
 .ReactVirtualized__Table__row {
   font-size: 0.8rem;
+}
+.section {
+  display: flex;
+  height: 110px;
+}
+.section--inner {
+  width: 50%;
+}
+.section--title {
+  color: #ffffff;
+  margin: 10px 0;
+  text-align: center;
+}
+[class^="filters"] {
+  display: flex;
+  justify-content: space-around;
+}
+
+.sort--holder {
+  text-align: center;
+}
+.sort--title {
+  color: #ffffff;
+  display: block;
+  width: 100px;
+  height: 20px;
+}
+.table--empty {
+  width: 660px;
+  margin: 40px auto;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
 }
