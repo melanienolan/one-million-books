@@ -144,7 +144,7 @@ header h1 {
   margin: 10px 0;
   text-align: center;
 }
-[class^="filters"] {
+[class^="section--container"] {
   display: flex;
   justify-content: space-around;
 }
