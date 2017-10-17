@@ -8,8 +8,8 @@ const Sort = ({ type, sortBooks }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
   return (
-    <div className="sort">
-      <span>
+    <div className="sort--holder">
+      <span className="sort--title">
         {capitalizeFirstLetter(type)}
       </span>
       <button className="button--sort" onClick={() => sortBooks(type, 1)}>
