@@ -12,3 +12,8 @@ const GenerateButton = ({ number, generateBooks }) => {
 };
 
 export default GenerateButton;
+
+GenerateButton.propTypes = {
+  number: PropTypes.number,
+  generateBooks: PropTypes.func
+};
