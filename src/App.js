@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import faker from 'faker';
-import { genres, genders, specialDates, lastFridays } from './mockDB';
+import { genres, genders, specialDates } from './mockDB';
+import isFriday from 'date-fns/is_friday';
+import lastDayOfMonth from 'date-fns/last_day_of_month';
+import differenceInDays from 'date-fns/difference_in_days';
 import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
@@ -51,13 +54,15 @@ class App extends Component {
       });
     };
     const isDateSpecial = date => {
-      if (date.slice(5) === '10-31' && lastFridays.indexOf(date) > -1) {
+      const isLastFriday =
+        isFriday(date) && differenceInDays(lastDayOfMonth(date), date) < 7 ? true : false;
+      if (date.slice(5) === '10-31' && isLastFriday) {
         return 'Halloween and Last Friday';
       }
       if (date.slice(5) === '10-31') {
         return 'Halloween';
       }
-      if (lastFridays.indexOf(date) > -1) {
+      if (isLastFriday) {
         return 'Last Friday of Month';
       } else {
         return null;
@@ -67,10 +72,6 @@ class App extends Component {
     // remove All from list of genres and genders
     genres = genres.slice(1);
     genders = genders.slice(1);
-
-    const book = {
-      visible: 1
-    };
 
     const books = [...Array(numberOfBooks)].map((x, i) => {
       const id = i;
@@ -82,16 +83,18 @@ class App extends Component {
       const genre = genres[Math.floor(Math.random() * genres.length)];
       const published = faker.date.past(100).toISOString().substr(0, 10);
       const special = isDateSpecial(published);
+      const visible = 1;
 
-      return Object.assign({}, book, {
+      return {
         id,
         title,
         authorName,
         authorGender,
         genre,
         published,
-        special
-      });
+        special,
+        visible
+      };
     });
     this.setState({
       books,
