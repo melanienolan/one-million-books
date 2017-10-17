@@ -23,3 +23,8 @@ const Sort = ({ type, sortBooks }) => {
 };
 
 export default Sort;
+
+Sort.propTypes = {
+  type: PropTypes.string,
+  sortBooks: PropTypes.func
+};
