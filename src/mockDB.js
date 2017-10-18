@@ -52,6 +52,7 @@ const generateBooks = numberOfBooks => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   };
+
   const isDateSpecial = date => {
     const isLastFriday =
       isFriday(date) && differenceInDays(lastDayOfMonth(date), date) < 7 ? true : false;
@@ -95,14 +96,6 @@ const generateBooks = numberOfBooks => {
   });
   return books;
 };
-const allBooks = generateBooks(1000000);
+const books = generateBooks(1000000);
 
-function getBooks() {
-  return new Promise(res => {
-    setTimeout(() => {
-      res(allBooks);
-    }, 2000);
-  });
-}
-
-export default { getBooks, genres, genders, specialDates };
+export default { books, genres, genders, specialDates };
