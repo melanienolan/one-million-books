@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import faker from 'faker';
-import { genres, genders, specialDates } from './mockDB';
-import isFriday from 'date-fns/is_friday';
-import lastDayOfMonth from 'date-fns/last_day_of_month';
-import differenceInDays from 'date-fns/difference_in_days';
+// import faker from 'faker';
+// import genres from './mockDB';
+// import genders from './mockDB';
+// import specialDates from './mockDB';
+// import { genres, genders, specialDates } from './mockDB';
+import db from './mockDB';
+// import getBooks from './mockDB';
+// import isFriday from 'date-fns/is_friday';
+// import lastDayOfMonth from 'date-fns/last_day_of_month';
+// import differenceInDays from 'date-fns/difference_in_days';
 import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
@@ -30,72 +35,23 @@ class App extends Component {
   }
 
   getDetails() {
-    // db.getGenres().then(genres => {
-    //   this.setState({
-    //     genres,
-    //     isLoading: false
-    //   });
-    // });
-
-    this.setState({
-      genres,
-      genders,
-      specialDates,
-      isLoading: false
+    const { genres, genders, specialDates } = db;
+    db.getBooks().then(books => {
+      this.setState({
+        books,
+        genres,
+        genders,
+        specialDates,
+        isLoading: false
+      });
     });
   }
   componentDidMount() {
     this.getDetails();
   }
-  generateBooks(numberOfBooks) {
-    const capitalizeWords = str => {
-      return str.replace(/\w\S*/g, txt => {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      });
-    };
-    const isDateSpecial = date => {
-      const isLastFriday =
-        isFriday(date) && differenceInDays(lastDayOfMonth(date), date) < 7 ? true : false;
-      if (date.slice(5) === '10-31' && isLastFriday) {
-        return 'Halloween and Last Friday';
-      }
-      if (date.slice(5) === '10-31') {
-        return 'Halloween';
-      }
-      if (isLastFriday) {
-        return 'Last Friday of Month';
-      } else {
-        return null;
-      }
-    };
-    let { genres, genders } = this.state;
-    // remove All from list of genres and genders
-    genres = genres.slice(1);
-    genders = genders.slice(1);
-
-    const books = [...Array(numberOfBooks)].map((x, i) => {
-      const id = i;
-      const title = capitalizeWords(faker.lorem.words());
-      const authorFirstName = faker.name.firstName();
-      const authorLastName = faker.name.lastName();
-      const authorName = `${authorLastName}, ${authorFirstName}`;
-      const authorGender = genders[Math.floor(Math.random() * genders.length)];
-      const genre = genres[Math.floor(Math.random() * genres.length)];
-      const published = faker.date.past(100).toISOString().substr(0, 10);
-      const special = isDateSpecial(published);
-      const visible = 1;
-
-      return {
-        id,
-        title,
-        authorName,
-        authorGender,
-        genre,
-        published,
-        special,
-        visible
-      };
-    });
+  getListOfBooks(numberOfBooks) {
+    let { books } = this.state;
+    books = books.filter(book => book.id < numberOfBooks);
     this.setState({
       books,
       numberOfBooks
@@ -154,7 +110,6 @@ class App extends Component {
   }
   filterBooks() {
     let { books, filters } = this.state;
-
     books = books.map(book => {
       if (
         (filters.specialDates === 'All' || book.special === filters.specialDates) &&
@@ -181,7 +136,8 @@ class App extends Component {
           <header className="">
             <h1 className="">One Million Books...</h1>
           </header>
-          {!this.state.books.length
+          {!this.state.numberOfBooks ||
+          this.state.books.length !== this.state.numberOfBooks
             ? <main className="book--container-empty">
                 <h3>
                   Click here to <br />generate books
@@ -189,15 +145,15 @@ class App extends Component {
                 <div className="button--holder">
                   <GenerateButton
                     number={10}
-                    generateBooks={number => this.generateBooks(number)}
+                    generateBooks={number => this.getListOfBooks(number)}
                   />
                   <GenerateButton
                     number={1000000}
-                    generateBooks={number => this.generateBooks(number)}
+                    generateBooks={number => this.getListOfBooks(number)}
                   />
                   <GenerateButton
                     number={1000}
-                    generateBooks={number => this.generateBooks(number)}
+                    generateBooks={number => this.getListOfBooks(number)}
                   />
                 </div>
               </main>
