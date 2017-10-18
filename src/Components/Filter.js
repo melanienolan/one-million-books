@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) => {
-  const capitalizeFirstLetter = str => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  const unCamelCaser = str => {
+    return str.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
   };
   const renderList = () => {
     return filterCategories.map((category, i) => {
@@ -19,7 +19,7 @@ const Filter = ({ filterType, filterCategories, activeFilter, updateFilters }) =
       <form className="form" action="">
         <label className="form--label">
           <span className="form--text">
-            {capitalizeFirstLetter(filterType)}
+            {unCamelCaser(filterType)}
           </span>
           <select
             className="form--input"
