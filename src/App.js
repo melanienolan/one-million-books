@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-// import faker from 'faker';
-// import genres from './mockDB';
-// import genders from './mockDB';
-// import specialDates from './mockDB';
-// import { genres, genders, specialDates } from './mockDB';
 import db from './mockDB';
-// import getBooks from './mockDB';
-// import isFriday from 'date-fns/is_friday';
-// import lastDayOfMonth from 'date-fns/last_day_of_month';
-// import differenceInDays from 'date-fns/difference_in_days';
 import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
