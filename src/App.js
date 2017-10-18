@@ -24,23 +24,20 @@ class App extends Component {
       }
     };
   }
-
-  getDetails() {
-    const { genres, genders, specialDates } = db;
-    db.getBooks().then(books => {
-      this.setState({
-        books,
-        genres,
-        genders,
-        specialDates,
-        isLoading: false
-      });
+  getData() {
+    const { books, genres, genders, specialDates } = db;
+    this.setState({
+      books,
+      genres,
+      genders,
+      specialDates,
+      isLoading: false
     });
   }
   componentDidMount() {
-    this.getDetails();
+    this.getData();
   }
-  getListOfBooks(numberOfBooks) {
+  getBooks(numberOfBooks) {
     let { books } = this.state;
     books = books.filter(book => book.id < numberOfBooks);
     this.setState({
@@ -136,15 +133,15 @@ class App extends Component {
                 <div className="button--holder">
                   <GenerateButton
                     number={10}
-                    generateBooks={number => this.getListOfBooks(number)}
+                    generateBooks={number => this.getBooks(number)}
                   />
                   <GenerateButton
                     number={1000000}
-                    generateBooks={number => this.getListOfBooks(number)}
+                    generateBooks={number => this.getBooks(number)}
                   />
                   <GenerateButton
                     number={1000}
-                    generateBooks={number => this.getListOfBooks(number)}
+                    generateBooks={number => this.getBooks(number)}
                   />
                 </div>
               </main>
