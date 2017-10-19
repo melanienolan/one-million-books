@@ -9,7 +9,6 @@ Enzyme.configure({ adapter: new Adapter() });
 const { genres, specialDates } = db;
 
 it('renders filter component without crashing', () => {
-  // const {genres} = db;
   const filter = genres[4];
   Enzyme.shallow(
     <Filter filterCategories={genres} filterType="genre" activeFilter={filter} />
