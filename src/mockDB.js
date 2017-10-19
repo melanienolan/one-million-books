@@ -17,7 +17,7 @@ let genres = [
   'Health',
   'Guide',
   'Travel',
-  "Children's",
+  'Children',
   'Religion, Spirituality & New Age',
   'Science',
   'History',
@@ -78,6 +78,7 @@ const generateBooks = numberOfBooks => {
       let book = books[Math.floor(Math.random() * books.length)];
       authorName = book.authorName;
       authorGender = book.authorGender;
+      book = books[Math.floor(Math.random() * books.length)];
       published = book.published;
       special = book.special;
     } else {
@@ -103,7 +104,6 @@ const generateBooks = numberOfBooks => {
       visible
     });
   }
-
   return books;
 };
 
