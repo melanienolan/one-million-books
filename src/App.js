@@ -45,7 +45,7 @@ class App extends Component {
       numberOfBooks
     });
   }
-  sortBooks(type = '', dir) {
+  sortBooks(type, dir) {
     let { books } = this.state;
     books = dir
       ? books.slice().sort((a, b) => {
@@ -61,7 +61,7 @@ class App extends Component {
           if (type === 'id') {
             return a.id < b.id ? -1 : 1;
           }
-          return;
+          return null;
         })
       : books.slice().sort((a, b) => {
           if (type === 'title') {
@@ -76,7 +76,7 @@ class App extends Component {
           if (type === 'id') {
             return a.id > b.id ? -1 : 1;
           }
-          return;
+          return null;
         });
     this.setState({
       books
@@ -120,9 +120,9 @@ class App extends Component {
       return <div className="loading">Loading...</div>;
     } else {
       return (
-        <div className="">
-          <header className="">
-            <h1 className="">One Million Books...</h1>
+        <div className="app">
+          <header className="header">
+            <h1 className="header--title">One Million Books...</h1>
           </header>
           {!this.state.numberOfBooks ||
           this.state.books.length !== this.state.numberOfBooks
