@@ -9,18 +9,18 @@
 body {
   background-color: #b16caf;
 }
-button {
+[class^="button"] {
   border: none;
   cursor: pointer;
 }
-header {
+.header {
   height: 80px;
   background-color: #b16caf;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-header h1 {
+.header--title {
   color: #ffffff;
 }
 .button--sort {
@@ -123,14 +123,18 @@ header h1 {
 }
 .ReactVirtualized__Table__headerRow {
   text-transform: none;
-  border-bottom: 1px solid grey;
+  /*border-bottom: 1px solid grey;*/
   background-color: #b16caf;
   color: #ffffff;
 }
 .ReactVirtualized__Table__headerColumn {
 }
+.ReactVirtualized__Table__Grid {
+  border: 1px solid #eeeeee;
+}
 .ReactVirtualized__Table__row {
   font-size: 0.8rem;
+  border-bottom: 1px solid #eeeeee;
 }
 .section {
   display: flex;
@@ -160,8 +164,17 @@ header h1 {
 }
 .table--empty {
   width: 660px;
-  margin: 40px auto;
+  margin: 0 auto;
+}
+.table--error {
+  height: 360px;
   color: #ffffff;
   font-weight: bold;
   text-align: center;
+}
+.table--number {
+  color: #ffffff;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 10px auto;
 }
