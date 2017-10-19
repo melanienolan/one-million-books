@@ -15,7 +15,6 @@ it('renders book list component with no books without crashing', () => {
   const books = [];
   Enzyme.shallow(<BookList books={books} />);
 });
-
 it('renders book list error message with no books', () => {
   const books = [];
   const bookListComponent = Enzyme.shallow(<BookList books={books} />);
