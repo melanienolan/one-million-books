@@ -10,10 +10,10 @@ it('renders generate button component without crashing', () => {
   Enzyme.shallow(<GenerateButton number={10} />);
 });
 it('renders generate button component with 10', () => {
-  const GenerateButtonComponent = Enzyme.shallow(<GenerateButton number={10} />);
-  expect(toJson(GenerateButtonComponent)).toMatchSnapshot();
+  const generateButtonComponent = Enzyme.shallow(<GenerateButton number={10} />);
+  expect(toJson(generateButtonComponent)).toMatchSnapshot();
 });
 it('renders generate button component with 1000000', () => {
-  const GenerateButtonComponent = Enzyme.shallow(<GenerateButton number={1000000} />);
-  expect(toJson(GenerateButtonComponent)).toMatchSnapshot();
+  const generateButtonComponent = Enzyme.shallow(<GenerateButton number={1000000} />);
+  expect(toJson(generateButtonComponent)).toMatchSnapshot();
 });
