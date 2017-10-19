@@ -132,8 +132,8 @@ class App extends Component {
           {!this.state.numberOfBooks ||
           this.state.books.length !== this.state.numberOfBooks
             ? <main className="book--container-empty">
-                <h3>
-                  Click here to <br />generate books
+                <h3 className="book--container-title">
+                  Click to <br />generate books
                 </h3>
                 <div className="button--holder">
                   <GenerateButton
