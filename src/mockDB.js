@@ -83,7 +83,7 @@ const generateBooks = numberOfBooks => {
       published = randomBook.published;
       special = randomBook.special;
     } else {
-      published = faker.date.past(100).toISOString().substr(0, 10);
+      published = faker.date.past(40).toISOString().substr(0, 10);
       special = isDateSpecial(published);
     }
     if (i > 50000) {
