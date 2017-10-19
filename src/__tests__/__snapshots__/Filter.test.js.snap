@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders genre filter component with All 1`] = `
+<div>
+  <form
+    action=""
+    className="form"
+  >
+    <label
+      className="form--label"
+    >
+      <span
+        className="form--text"
+      >
+        Genre
+      </span>
+      <select
+        className="form--input"
+        id=""
+        name="filter"
+        onChange={[Function]}
+        value="All"
+      >
+        <option
+          key="0"
+          value="All"
+        >
+          All
+        </option>
+        <option
+          key="1"
+          value="Finance"
+        >
+          Finance
+        </option>
+        <option
+          key="2"
+          value="Science fiction"
+        >
+          Science fiction
+        </option>
+        <option
+          key="3"
+          value="Satire"
+        >
+          Satire
+        </option>
+        <option
+          key="4"
+          value="Drama"
+        >
+          Drama
+        </option>
+        <option
+          key="5"
+          value="Action and Adventure"
+        >
+          Action and Adventure
+        </option>
+        <option
+          key="6"
+          value="Romance"
+        >
+          Romance
+        </option>
+        <option
+          key="7"
+          value="Mystery"
+        >
+          Mystery
+        </option>
+        <option
+          key="8"
+          value="Horror"
+        >
+          Horror
+        </option>
+        <option
+          key="9"
+          value="Self help"
+        >
+          Self help
+        </option>
+        <option
+          key="10"
+          value="Health"
+        >
+          Health
+        </option>
+        <option
+          key="11"
+          value="Guide"
+        >
+          Guide
+        </option>
+        <option
+          key="12"
+          value="Travel"
+        >
+          Travel
+        </option>
+        <option
+          key="13"
+          value="Children's"
+        >
+          Children's
+        </option>
+        <option
+          key="14"
+          value="Religion, Spirituality & New Age"
+        >
+          Religion, Spirituality & New Age
+        </option>
+        <option
+          key="15"
+          value="Science"
+        >
+          Science
+        </option>
+        <option
+          key="16"
+          value="History"
+        >
+          History
+        </option>
+        <option
+          key="17"
+          value="Math"
+        >
+          Math
+        </option>
+        <option
+          key="18"
+          value="Anthology"
+        >
+          Anthology
+        </option>
+        <option
+          key="19"
+          value="Poetry"
+        >
+          Poetry
+        </option>
+        <option
+          key="20"
+          value="Encyclopedias"
+        >
+          Encyclopedias
+        </option>
+        <option
+          key="21"
+          value="Dictionaries"
+        >
+          Dictionaries
+        </option>
+        <option
+          key="22"
+          value="Comics"
+        >
+          Comics
+        </option>
+        <option
+          key="23"
+          value="Art"
+        >
+          Art
+        </option>
+        <option
+          key="24"
+          value="Cookbooks"
+        >
+          Cookbooks
+        </option>
+        <option
+          key="25"
+          value="Diaries"
+        >
+          Diaries
+        </option>
+        <option
+          key="26"
+          value="Journals"
+        >
+          Journals
+        </option>
+        <option
+          key="27"
+          value="Prayer books"
+        >
+          Prayer books
+        </option>
+        <option
+          key="28"
+          value="Series"
+        >
+          Series
+        </option>
+        <option
+          key="29"
+          value="Trilogy"
+        >
+          Trilogy
+        </option>
+        <option
+          key="30"
+          value="Biographies"
+        >
+          Biographies
+        </option>
+        <option
+          key="31"
+          value="Autobiographies"
+        >
+          Autobiographies
+        </option>
+        <option
+          key="32"
+          value="Fantasy"
+        >
+          Fantasy
+        </option>
+      </select>
+    </label>
+  </form>
+</div>
+`;
+
+exports[`renders special dates filter component with Halloween 1`] = `
+<div>
+  <form
+    action=""
+    className="form"
+  >
+    <label
+      className="form--label"
+    >
+      <span
+        className="form--text"
+      >
+        Special Dates
+      </span>
+      <select
+        className="form--input"
+        id=""
+        name="filter"
+        onChange={[Function]}
+        value="Halloween"
+      >
+        <option
+          key="0"
+          value="All"
+        >
+          All
+        </option>
+        <option
+          key="1"
+          value="Halloween"
+        >
+          Halloween
+        </option>
+        <option
+          key="2"
+          value="Last Friday of Month"
+        >
+          Last Friday of Month
+        </option>
+        <option
+          key="3"
+          value="Halloween and Last Friday"
+        >
+          Halloween and Last Friday
+        </option>
+      </select>
+    </label>
+  </form>
+</div>
+`;
