@@ -4,7 +4,7 @@ This app will generate a list of ten, a thousand or a million books. You can sor
 
 ## Get started ##
 
-` yarn install ` to install dependencies
+` yarn ` to install dependencies
 
 ` yarn run build `
 
