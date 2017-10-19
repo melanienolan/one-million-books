@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders book list error message with no books 1`] = `
+<div
+  className="table--empty"
+>
+  <div
+    className="table--error"
+  >
+    No books exist with those filters
+  </div>
+  <p
+    className="table--number"
+  >
+    Number of books showing: 
+    0
+  </p>
+</div>
+`;
