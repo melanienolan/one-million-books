@@ -36,7 +36,6 @@ body {
   margin: 0 auto;
 }
 .book--container-empty {
-  /*display: none;*/
   display: flex;
   align-items: center;
   justify-content: center;
