@@ -34,10 +34,6 @@ body {
     transform: rotate(360deg);
   }
 }
-[class^="button"] {
-  border: none;
-  cursor: pointer;
-}
 .header {
   height: 80px;
   background-color: #b16caf;
@@ -47,14 +43,6 @@ body {
 }
 .header--title {
   color: #ffffff;
-}
-.button--sort {
-  background-color: #ffffff;
-  color: #b16caf;
-  border-radius: 50%;
-  width: 23px;
-  height: 23px;
-  margin: 2px;
 }
 [class^="book--container"] {
   width: 760px;
@@ -66,12 +54,16 @@ body {
   justify-content: center;
   flex-direction: column;
 }
-.book--container-empty h3 {
+.book--container-title {
   color: #ffffff;
   text-align: center;
   margin: 35px 0 15px 0;
   font-size: 1.5rem;
   line-height: 1.5;
+}
+[class^="button"] {
+  border: none;
+  cursor: pointer;
 }
 .button--holder {
   display: flex;
@@ -94,34 +86,38 @@ body {
   width: 50px;
   height: 50px;
 }
-.book--container-full {
-}
-.book--list {
-  width: 600px;
-  margin: 5px auto;
-  overflow: scroll;
-}
-.book--item {
-  height: 100px;
-  background-color: #ffffff;
-  margin-bottom: 2px;
-  list-style: none;
-  border-radius: 5px;
+.section {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: 110px;
 }
-.book--item-details {
+.section--inner {
+  width: 50%;
 }
-.book--item-text {
-  font-size: 12px;
-  line-height: 15px;
+.section--title {
+  color: #ffffff;
+  margin: 10px 0;
+  text-align: center;
 }
-.book--item-field {
-  display: inline-block;
-  width: 110px;
+[class^="section--container"] {
+  display: flex;
+  justify-content: space-around;
 }
-.form {
+.sort--holder {
+  text-align: center;
+}
+.sort--title {
+  color: #ffffff;
+  display: block;
+  width: 100px;
+  height: 20px;
+}
+.button--sort {
+  background-color: #ffffff;
+  color: #b16caf;
+  border-radius: 50%;
+  width: 23px;
+  height: 23px;
+  margin: 2px;
 }
 .form--label {
   color: #f6f5f7;
@@ -150,40 +146,12 @@ body {
   background-color: #b16caf;
   color: #ffffff;
 }
-.ReactVirtualized__Table__headerColumn {
-}
 .ReactVirtualized__Table__Grid {
   border: 1px solid #eeeeee;
 }
 .ReactVirtualized__Table__row {
   font-size: 0.8rem;
   border-bottom: 1px solid #eeeeee;
-}
-.section {
-  display: flex;
-  height: 110px;
-}
-.section--inner {
-  width: 50%;
-}
-.section--title {
-  color: #ffffff;
-  margin: 10px 0;
-  text-align: center;
-}
-[class^="section--container"] {
-  display: flex;
-  justify-content: space-around;
-}
-
-.sort--holder {
-  text-align: center;
-}
-.sort--title {
-  color: #ffffff;
-  display: block;
-  width: 100px;
-  height: 20px;
 }
 .table--empty {
   width: 660px;
