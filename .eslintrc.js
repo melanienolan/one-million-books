@@ -12,7 +12,7 @@ module.exports = {
     },
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'jest'],
   rules: {
     'no-unused-vars': 1,
     'linebreak-style': ['error', 'unix'],
