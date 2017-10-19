@@ -46,7 +46,7 @@ let specialDates = [
   'Halloween and Last Friday'
 ];
 
-/**** New generateBooks function, takes 3 secs ****/
+/**** New generateBooks function, takes 4 secs ****/
 const generateBooks = numberOfBooks => {
   const capitalizeWords = str => {
     return str.replace(/\w\S*/g, txt => {
@@ -71,23 +71,28 @@ const generateBooks = numberOfBooks => {
   const _genres = genres.slice(1);
   const _genders = genders.slice(1);
   let books = [],
-    i;
+    i,
+    published,
+    special,
+    authorName,
+    authorGender;
+
   for (i = 0; i < numberOfBooks; i++) {
-    let authorName, authorGender, published, special;
-    if (i > 10000) {
-      let book = books[Math.floor(Math.random() * books.length)];
-      authorName = book.authorName;
-      authorGender = book.authorGender;
-      book = books[Math.floor(Math.random() * books.length)];
-      published = book.published;
-      special = book.special;
+    if (i > 15000) {
+      let randomBook = books[Math.floor(Math.random() * books.length)];
+      published = randomBook.published;
+      special = randomBook.special;
     } else {
-      const authorFirstName = faker.name.firstName();
-      const authorLastName = faker.name.lastName();
-      authorName = `${authorLastName}, ${authorFirstName}`;
-      authorGender = _genders[Math.floor(Math.random() * _genders.length)];
-      published = faker.date.past(40).toISOString().substr(0, 10);
+      published = faker.date.past(100).toISOString().substr(0, 10);
       special = isDateSpecial(published);
+    }
+    if (i > 50000) {
+      let randomBook = books[Math.floor(Math.random() * books.length)];
+      authorName = randomBook.authorName;
+      authorGender = randomBook.authorGender;
+    } else {
+      authorName = `${faker.name.firstName()}, ${faker.name.lastName()}`;
+      authorGender = _genders[Math.floor(Math.random() * _genders.length)];
     }
     const id = i;
     const title = capitalizeWords(faker.lorem.words());
