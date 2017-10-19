@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders generate button component with 10 1`] = `
+<button
+  className="button--generate-small"
+  onClick={[Function]}
+>
+  10
+</button>
+`;
+
+exports[`renders generate button component with 1000000 1`] = `
+<button
+  className="button--generate-large"
+  onClick={[Function]}
+>
+  1000000
+</button>
+`;
