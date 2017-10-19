@@ -101,9 +101,9 @@ exports[`renders genre filter component with All 1`] = `
         </option>
         <option
           key="13"
-          value="Children's"
+          value="Children"
         >
-          Children's
+          Children
         </option>
         <option
           key="14"
