@@ -123,7 +123,6 @@ body {
 }
 .ReactVirtualized__Table__headerRow {
   text-transform: none;
-  /*border-bottom: 1px solid grey;*/
   background-color: #b16caf;
   color: #ffffff;
 }
