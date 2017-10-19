@@ -9,6 +9,31 @@
 body {
   background-color: #b16caf;
 }
+.loading {
+  width: 600px;
+  margin: 150px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.loading--text {
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+.loading--icon {
+  animation: loader-spin infinite 10s linear;
+  height: 130px;
+}
+@keyframes loader-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 [class^="button"] {
   border: none;
   cursor: pointer;
