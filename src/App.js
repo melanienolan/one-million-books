@@ -47,37 +47,22 @@ class App extends Component {
   }
   sortBooks(type, dir) {
     let { books } = this.state;
-    books = dir
-      ? books.slice().sort((a, b) => {
-          if (type === 'title') {
-            return a.title < b.title ? -1 : 1;
-          }
-          if (type === 'author') {
-            return a.authorName < b.authorName ? -1 : 1;
-          }
-          if (type === 'date') {
-            return a.published < b.published ? -1 : 1;
-          }
-          if (type === 'id') {
-            return a.id < b.id ? -1 : 1;
-          }
-          return null;
-        })
-      : books.slice().sort((a, b) => {
-          if (type === 'title') {
-            return a.title > b.title ? -1 : 1;
-          }
-          if (type === 'author') {
-            return a.authorName > b.authorName ? -1 : 1;
-          }
-          if (type === 'date') {
-            return a.published > b.published ? -1 : 1;
-          }
-          if (type === 'id') {
-            return a.id > b.id ? -1 : 1;
-          }
-          return null;
-        });
+    books = books.slice().sort((a, b) => {
+      if (type === 'title') {
+        return a.title < b.title ? -1 : 1;
+      }
+      if (type === 'author') {
+        return a.authorName < b.authorName ? -1 : 1;
+      }
+      if (type === 'date') {
+        return a.published < b.published ? -1 : 1;
+      }
+      if (type === 'id') {
+        return a.id < b.id ? -1 : 1;
+      }
+      return null;
+    });
+    books = dir ? books : books.reverse();
     this.setState({
       books
     });
@@ -119,7 +104,7 @@ class App extends Component {
     if (this.state.isLoading) {
       return (
         <div className="loading">
-          <p className="loading--text">Wouldn't you like to work with me..? :)</p>
+          <p className="loading--text">Wouldn't you like to work with Mel..? :)</p>
           <img src={loader} className="loading--icon" alt="loader" />
         </div>
       );
