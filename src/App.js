@@ -4,7 +4,7 @@ import GenerateButton from './Components/GenerateButton';
 import BookList from './Components/BookList';
 import Sort from './Components/Sort';
 import Filter from './Components/Filter';
-import logo from './logo.svg';
+import loader from './loader.png';
 import './App.css';
 
 class App extends Component {
@@ -35,7 +35,7 @@ class App extends Component {
     });
   }
   componentDidMount() {
-    this.getData();
+    setTimeout(() => this.getData(), 2000);
   }
   getBooks(numberOfBooks) {
     let { books } = this.state;
@@ -117,7 +117,12 @@ class App extends Component {
 
   render() {
     if (this.state.isLoading) {
-      return <div className="loading">Loading...</div>;
+      return (
+        <div className="loading">
+          <p className="loading--text">Wouldn't you like to work with me..? :)</p>
+          <img src={loader} className="loading--icon" alt="loader" />
+        </div>
+      );
     } else {
       return (
         <div className="app">
